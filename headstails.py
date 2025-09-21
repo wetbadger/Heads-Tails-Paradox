@@ -11,17 +11,13 @@ def play_game1(bet_on, bet_amt, n):
 	for i in range(n):
 		coin1 = random.choice(["Heads", "Tails"])
 		coin2 = random.choice(["Heads", "Tails"])
+		# We bet on the coin after both are flipped
 		pot -= bet_amt
 		if coin1 == "Tails" and coin2 == "Tails":
 			pot += bet_amt  # refund
 			continue  # skip tails-tails
-		if bet_on == "Tails":
-			if coin1 == "Tails" or coin2 == "Tails":  # i.e., not HH
-				# win: get payout for tails
-				pot += bet_amt + bet_amt
-		else: # bet on heads
-			if coin1 == "Heads" and coin2 == "Heads":
-				pot += bet_amt + bet_amt
+		if bet_on == "Heads" and coin1 == "Heads" and coin2 == "Heads" or bet_on == "Tails" and (coin1 == "Tails" or coin2 == "Tails"):
+			pot += bet_amt + bet_amt
 	return pot
 
 # This casino also offers a similar game where the only difference is that they flip the coins one at a time. 
@@ -40,10 +36,7 @@ def play_game2(bet_on, bet_amt, n):
 			pot += bet_amt  # refund
 			continue
 		if bet_on == coin2:
-			if bet_on == "Tails":
-				pot += bet_amt + bet_amt
-			else:
-				pot += bet_amt + bet_amt
+			pot += bet_amt + bet_amt
 	return pot
 
 if __name__ == "__main__":
