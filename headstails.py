@@ -11,7 +11,7 @@ def play_game1(bet_on, bet_amt, n):
 	for i in range(n):
 		coin1 = random.choice(["Heads", "Tails"])
 		coin2 = random.choice(["Heads", "Tails"])
-		# We bet on the coin after both are flipped
+		# We bet on the other coin after both are flipped
 		pot -= bet_amt
 		if coin1 == "Tails" and coin2 == "Tails":
 			pot += bet_amt  # refund
@@ -39,6 +39,37 @@ def play_game2(bet_on, bet_amt, n):
 			pot += bet_amt + bet_amt
 	return pot
 
+# In another game, the dealer either tells you that the coin landed on heads or tails.
+# Then you bet on the other coin. No outcomes are refunded.
+
+def play_game3(bet_on, bet_amt, n):
+	pot = 0
+	for i in range(n):
+		coin1 = random.choice(["Heads", "Tails"])
+		coin2 = random.choice(["Heads", "Tails"])
+		# We bet on the other coin after both are flipped
+		pot -= bet_amt
+		reveal = random.choice([coin1, coin2])
+		if (coin1 == reveal and coin2 == bet_on or coin1 == bet_on and coin2 == reveal):
+			pot += bet_amt + bet_amt * 0.99
+	return pot
+
+# The fourth game, is like the 3rd game, except the dealer has a bias towards calling heads.
+
+def play_game4(bet_on, bet_amt, n):
+	pot = 0
+	for i in range(n):
+		coin1 = random.choice(["Heads", "Tails"])
+		coin2 = random.choice(["Heads", "Tails"])
+		# We bet on the other coin after both are flipped
+		pot -= bet_amt
+		reveal = "Heads"
+		if coin1 == "Tails" and coin2 == "Tails":
+			reveal = "Tails"
+		if (coin1 == reveal and coin2 == bet_on or coin1 == bet_on and coin2 == reveal):
+			pot += bet_amt + bet_amt * 0.99
+	return pot
+
 if __name__ == "__main__":
 	n = 100000
 	bet_amt = 1
@@ -46,3 +77,8 @@ if __name__ == "__main__":
 	print("Game1: Betting on Tails (favorable):", play_game1("Tails", bet_amt, n))
 	print("Game2: Betting on Heads (favorable):", play_game2("Heads", bet_amt, n))
 	print("Game2: Betting on Tails (unfavorable):", play_game2("Tails", bet_amt, n))
+
+	print("Game3: Betting on Heads (?):", play_game3("Heads", bet_amt, n))
+	print("Game3: Betting on Tails (?):", play_game3("Tails", bet_amt, n))
+	print("Game4: Betting on Heads (unfavorable):", play_game4("Heads", bet_amt, n))
+	print("Game4: Betting on Tails (favorable):", play_game4("Tails", bet_amt, n))
