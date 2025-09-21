@@ -1,9 +1,9 @@
 import random
 
-#You go to a casino and play a brand new game where they flip two hidden coins, and then you place a bet. 
-#They tell you honestly, "one of the coins came up heads, do you want to bet the other coin is heads or tails?" 
-#However if both coins had come up tails, they don't say anything, your bet is simply refunded. 
-#It turns out that, after playing many games, you would lose money betting heads, and you would win money by betting tails. 
+# You go to a casino and play a brand new game where they flip two hidden coins, and then you place a bet. 
+# They tell you honestly, "one of the coins came up heads, do you want to bet the other coin is heads or tails?" 
+# However if both coins had come up tails, they don't say anything, your bet is simply refunded. 
+# It turns out that, after playing many games, you would lose money betting heads, and you would win money by betting tails. 
 
 
 def play_game1(bet_on, bet_amt, n):
